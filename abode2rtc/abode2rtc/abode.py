@@ -97,6 +97,9 @@ class AbodeApiClient:
     def _get_cameras(self) -> list:
         if not self._cameras:
             self._get_devices()
+            log.debug("All devices found in Abode API:")
+            for d in self._devices:
+                log.debug(f"  name={d.get('name')!r}  type_tag={d.get('type_tag')!r}  origin={d.get('origin')!r}  id={d.get('id')!r}")
             self._cameras = [d for d in self._devices if d['type_tag'] == const.CAMERA_TYPE and
                              d['origin'] == 'abode_cam']
             if len(self._cameras) == 0:
