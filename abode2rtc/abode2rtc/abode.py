@@ -100,8 +100,9 @@ class AbodeApiClient:
             log.debug("All devices found in Abode API:")
             for d in self._devices:
                 log.debug(f"  name={d.get('name')!r}  type_tag={d.get('type_tag')!r}  origin={d.get('origin')!r}  id={d.get('id')!r}")
-            self._cameras = [d for d in self._devices if d['type_tag'] == const.CAMERA_TYPE and
-                             d['origin'] == 'abode_cam']
+            self._cameras = [d for d in self._devices if
+                             (d['type_tag'] == const.CAMERA_TYPE and d['origin'] == 'abode_cam') or
+                             (d['type_tag'] == const.IOTA_CAMERA_TYPE and d['origin'] == 'abode')]
             if len(self._cameras) == 0:
                 log.warning("No cameras found in your Abode setup")
         return self._cameras
