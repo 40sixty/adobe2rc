@@ -15,8 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Get addon version
+        id: version
+        run: |
+          VERSION=$(grep '^version:' abode-stream/config.yaml | awk '{print $2}')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Get build matrix
         id: matrix
@@ -46,9 +53,11 @@ jobs:
           container-registry-password: ${{ secrets.GITHUB_TOKEN }}
           context: ./abode-stream
           image: ${{ matrix.image }}
-          image-tags: latest
+          image-tags: |
+            ${{ needs.init.outputs.version }}
+            latest
           push: "true"
-          version: ${{ github.sha }}
+          version: ${{ needs.init.outputs.version }}
 
   manifest:
     name: Publish multi-arch manifest
@@ -64,4 +73,6 @@ jobs:
           architectures: ${{ env.ARCHITECTURES }}
           container-registry-password: ${{ secrets.GITHUB_TOKEN }}
           image-name: ${{ env.IMAGE_NAME }}
-          image-tags: latest
+          image-tags: |
+            ${{ needs.init.outputs.version }}
+            latest
