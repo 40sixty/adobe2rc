@@ -1,9 +1,9 @@
-name: Abode Camera Streaming
+name: Abode Stream
 version: 1.2.9
-image: "ghcr.io/tradel/{arch}-addon-abode2rtc"
-slug: abode2rtc
+image: "ghcr.io/40sixty/{arch}-addon-abode-stream"
+slug: abode-stream
 description: Provides streaming video from Abode security cameras
-url: https://github.com/tradel/hassio-addons/tree/main/abode2rtc
+url: https://github.com/40sixty/ha-addons/tree/main/abode-stream
 arch: [amd64, aarch64, armv7, i386]
 init: false
 startup: services
