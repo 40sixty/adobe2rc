@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0
+
+- Fix repeated login on every stream request that caused Abode email notifications
+- Fix session headers not being set correctly when loading saved credentials
+
 ## 1.2.9
 
 - Improved debug logging from `go2rtc`
