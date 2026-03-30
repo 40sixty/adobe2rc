@@ -170,7 +170,7 @@ class AbodeApiClient:
         self._features = data['features']
         self._devices = data['devices']
         self._cameras = data['cameras']
-        self._set_auth_headers
+        self._set_auth_headers()
         return self
 
     @staticmethod
