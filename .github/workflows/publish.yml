@@ -22,7 +22,7 @@ jobs:
       - name: Get addon version
         id: version
         run: |
-          VERSION=$(grep '^version:' abode-stream/config.yaml | awk '{print $2}')
+          VERSION=$(grep '^version:' abode-stream/config.yaml | awk '{print $2}' | tr -d '[:space:]')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Get build matrix
