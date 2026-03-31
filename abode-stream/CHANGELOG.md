@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1
+
+- Fix streams failing after session tokens expire — now re-authenticates automatically on failure
+
 ## 1.3.0
 
 - Fix repeated login on every stream request that caused Abode email notifications
